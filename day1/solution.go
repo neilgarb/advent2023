@@ -4,7 +4,6 @@ import (
 	_ "embed"
 	"fmt"
 	adv "github.com/neilgarb/advent2023"
-	"strconv"
 	"strings"
 	"unicode"
 )
@@ -34,8 +33,7 @@ func part1(lines []string) {
 		var nums []int
 		for _, c := range l {
 			if unicode.IsDigit(c) {
-				i, _ := strconv.Atoi(string(c))
-				nums = append(nums, i)
+				nums = append(nums, adv.Atoi(string(c)))
 			}
 		}
 		tot += nums[0]*10 + nums[len(nums)-1]
