@@ -4,7 +4,6 @@ import (
 	_ "embed"
 	"fmt"
 	adv "github.com/neilgarb/advent2023"
-	"regexp"
 	"strings"
 )
 
@@ -56,22 +55,21 @@ func part2(lines []string) {
 }
 
 func parseGames(lines []string) [][]adv.Coord3D {
-	numRe := regexp.MustCompile(`(\d+) (red|green|blue)`)
 	var res [][]adv.Coord3D
 	for _, l := range lines {
 		var row []adv.Coord3D
 		game := strings.Split(l, ": ")[1]
 		sets := strings.Split(game, "; ")
 		for _, set := range sets {
-			matches := numRe.FindAllStringSubmatch(set, -1)
 			var c adv.Coord3D
-			for _, m := range matches {
-				if m[2] == "red" {
-					c.X = adv.Atoi(m[1])
-				} else if m[2] == "green" {
-					c.Y = adv.Atoi(m[1])
+			for _, coll := range strings.Split(set, ", ") {
+				count, colour, _ := strings.Cut(coll, " ")
+				if colour == "red" {
+					c.X = adv.Atoi(count)
+				} else if colour == "green" {
+					c.Y = adv.Atoi(count)
 				} else {
-					c.Z = adv.Atoi(m[1])
+					c.Z = adv.Atoi(count)
 				}
 			}
 			row = append(row, c)
