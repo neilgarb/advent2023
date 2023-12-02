@@ -58,9 +58,7 @@ func parseGames(lines []string) [][]adv.Coord3D {
 	var res [][]adv.Coord3D
 	for _, l := range lines {
 		var row []adv.Coord3D
-		game := strings.Split(l, ": ")[1]
-		sets := strings.Split(game, "; ")
-		for _, set := range sets {
+		for _, set := range strings.Split(strings.Split(l, ": ")[1], "; ") {
 			var c adv.Coord3D
 			for _, coll := range strings.Split(set, ", ") {
 				count, colour, _ := strings.Cut(coll, " ")
