@@ -24,13 +24,12 @@ func main() {
 }
 
 func part1(lines []string) {
-	constraint := adv.Coord3D{X: 12, Y: 13, Z: 14}
 	games := parseGames(lines)
 	var tot int
 GameLoop:
 	for i, game := range games {
 		for _, set := range game {
-			if set.X > constraint.X || set.Y > constraint.Y || set.Z > constraint.Z {
+			if set.X > 12 || set.Y > 13 || set.Z > 14 {
 				continue GameLoop
 			}
 		}
@@ -58,10 +57,11 @@ func parseGames(lines []string) [][]adv.Coord3D {
 	var res [][]adv.Coord3D
 	for _, l := range lines {
 		var row []adv.Coord3D
-		for _, set := range strings.Split(strings.Split(l, ": ")[1], "; ") {
+		_, sets, _ := strings.Cut(l, ": ")
+		for _, set := range strings.Split(sets, "; ") {
 			var c adv.Coord3D
-			for _, coll := range strings.Split(set, ", ") {
-				count, colour, _ := strings.Cut(coll, " ")
+			for _, pick := range strings.Split(set, ", ") {
+				count, colour, _ := strings.Cut(pick, " ")
 				if colour == "red" {
 					c.X = adv.Atoi(count)
 				} else if colour == "green" {
