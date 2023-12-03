@@ -2,28 +2,18 @@ package advent2023
 
 import (
 	"bufio"
-	"bytes"
 	"strconv"
 	"strings"
 )
 
-func LinesFromString(s string) []string {
-	scanner := bufio.NewScanner(strings.NewReader(s))
+func Lines[T string | []byte](s T) []string {
+	scanner := bufio.NewScanner(strings.NewReader(string(s)))
 	var res []string
 	for scanner.Scan() {
 		res = append(res, scanner.Text())
 	}
 	return res
 
-}
-
-func LinesFromBytes(b []byte) []string {
-	scanner := bufio.NewScanner(bytes.NewReader(b))
-	var res []string
-	for scanner.Scan() {
-		res = append(res, scanner.Text())
-	}
-	return res
 }
 
 func Atoi(s string) int {

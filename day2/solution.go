@@ -17,10 +17,10 @@ Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red
 Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green`
 
 func main() {
-	part1(adv.LinesFromString(sample))
-	part1(adv.LinesFromBytes(input))
-	part2(adv.LinesFromString(sample))
-	part2(adv.LinesFromBytes(input))
+	part1(adv.Lines(sample))
+	part1(adv.Lines(input))
+	part2(adv.Lines(sample))
+	part2(adv.Lines(input))
 }
 
 func part1(lines []string) {

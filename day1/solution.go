@@ -12,19 +12,19 @@ import (
 var input []byte
 
 func main() {
-	part1(adv.LinesFromString(`1abc2
+	part1(adv.Lines(`1abc2
 pqr3stu8vwx
 a1b2c3d4e5f
 treb7uchet`))
-	part1(adv.LinesFromBytes(input))
-	part2(adv.LinesFromString(`two1nine
+	part1(adv.Lines(input))
+	part2(adv.Lines(`two1nine
 eightwothree
 abcone2threexyz
 xtwone3four
 4nineeightseven2
 zoneight234
 7pqrstsixteen`))
-	part2(adv.LinesFromBytes(input))
+	part2(adv.Lines(input))
 }
 
 func part1(lines []string) {

@@ -22,10 +22,10 @@ const sample = `467..114..
 .664.598..`
 
 func main() {
-	part1(adv.LinesFromString(sample))
-	part1(adv.LinesFromBytes(input))
-	part2(adv.LinesFromString(sample))
-	part2(adv.LinesFromBytes(input))
+	part1(adv.Lines(sample))
+	part1(adv.Lines(input))
+	part2(adv.Lines(sample))
+	part2(adv.Lines(input))
 }
 
 func part1(lines []string) {
