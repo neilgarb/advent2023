@@ -46,10 +46,7 @@ func part1(lines []string) {
 			AdjLoop:
 				for i := x - 1; i <= x+1; i++ {
 					for j := y - 1; j <= y+1; j++ {
-						if i == x && j == y {
-							continue
-						}
-						if j >= 0 && i >= 0 && j <= len(lines)-1 && i <= len(l)-1 {
+						if (i != x || j != y) && j >= 0 && i >= 0 && j <= len(lines)-1 && i <= len(l)-1 {
 							if !unicode.IsDigit(rune(lines[j][i])) && lines[j][i] != '.' {
 								isAdjacent = true
 								continue AdjLoop
@@ -89,10 +86,7 @@ func part2(lines []string) {
 			AdjLoop:
 				for i := x - 1; i <= x+1; i++ {
 					for j := y - 1; j <= y+1; j++ {
-						if i == x && j == y {
-							continue
-						}
-						if j >= 0 && i >= 0 && j <= len(lines)-1 && i <= len(l)-1 {
+						if (i != x || j != y) && j >= 0 && i >= 0 && j <= len(lines)-1 && i <= len(l)-1 {
 							if lines[j][i] == '*' {
 								adjacentToGear = &adv.Coord2D{X: i, Y: j}
 								continue AdjLoop
