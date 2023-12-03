@@ -29,26 +29,26 @@ func main() {
 }
 
 func part1(lines []string) {
-	var curNum string
-	var isAdjacent bool
+	var num string
+	var adjacent bool
 	var tot int
 	add := func() {
-		if isAdjacent {
-			tot += adv.Atoi(curNum) // curNum might be "".
+		if adjacent {
+			tot += adv.Atoi(num) // num might be "".
 		}
-		curNum = ""
-		isAdjacent = false
+		num = ""
+		adjacent = false
 	}
 	for y, l := range lines {
 		for x, c := range l {
 			if unicode.IsDigit(c) {
-				curNum += string(c)
+				num += string(c)
 			AdjLoop:
 				for i := x - 1; i <= x+1; i++ {
 					for j := y - 1; j <= y+1; j++ {
 						if (i != x || j != y) && j >= 0 && i >= 0 && j <= len(lines)-1 && i <= len(l)-1 {
 							if !unicode.IsDigit(rune(lines[j][i])) && lines[j][i] != '.' {
-								isAdjacent = true
+								adjacent = true
 								continue AdjLoop
 							}
 						}
@@ -65,30 +65,30 @@ func part1(lines []string) {
 
 func part2(lines []string) {
 	gears := make(map[adv.Coord2D]int)
-	var curNum string
-	var adjacentToGear *adv.Coord2D
+	var num string
+	var gear *adv.Coord2D
 	var tot int
 	add := func() {
-		if adjacentToGear != nil {
-			if gears[*adjacentToGear] > 0 {
-				tot += adv.Atoi(curNum) * gears[*adjacentToGear]
+		if gear != nil {
+			if gears[*gear] > 0 {
+				tot += adv.Atoi(num) * gears[*gear]
 			} else {
-				gears[*adjacentToGear] = adv.Atoi(curNum)
+				gears[*gear] = adv.Atoi(num)
 			}
 		}
-		curNum = ""
-		adjacentToGear = nil
+		num = ""
+		gear = nil
 	}
 	for y, l := range lines {
 		for x, c := range l {
 			if unicode.IsDigit(c) {
-				curNum += string(c)
+				num += string(c)
 			AdjLoop:
 				for i := x - 1; i <= x+1; i++ {
 					for j := y - 1; j <= y+1; j++ {
 						if (i != x || j != y) && j >= 0 && i >= 0 && j <= len(lines)-1 && i <= len(l)-1 {
 							if lines[j][i] == '*' {
-								adjacentToGear = &adv.Coord2D{X: i, Y: j}
+								gear = &adv.Coord2D{X: i, Y: j}
 								continue AdjLoop
 							}
 						}
