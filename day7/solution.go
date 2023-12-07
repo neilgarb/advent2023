@@ -74,17 +74,17 @@ const (
 	cards2 = "J23456789TQKA"
 )
 
-func score(hand string, jokers bool) int {
+func score(hand string, useJokers bool) int {
 	counts := make(map[rune]int)
 	for _, c := range hand {
 		counts[c]++
 	}
-	var jokerCount int
-	if jokers {
-		jokerCount = counts['J']
+	var jokers int
+	if useJokers {
+		jokers = counts['J']
 		delete(counts, 'J')
 	}
-	if jokerCount == 5 {
+	if jokers == 5 {
 		return FiveOfAKind
 	}
 	var three bool
@@ -93,7 +93,7 @@ func score(hand string, jokers bool) int {
 		if cnt == 5 {
 			return FiveOfAKind
 		} else if cnt == 4 {
-			if jokerCount == 1 {
+			if jokers == 1 {
 				return FiveOfAKind
 			}
 			return FourOfAKind
@@ -104,39 +104,37 @@ func score(hand string, jokers bool) int {
 		}
 	}
 	if three {
-		if jokerCount == 2 {
+		if jokers == 2 {
 			return FiveOfAKind
-		} else if jokerCount == 1 {
+		} else if jokers == 1 {
 			return FourOfAKind
 		}
-		if pairs > 0 {
+		if pairs == 1 {
 			return FullHouse
 		}
 		return ThreeOfAKind
-	}
-	if pairs == 2 {
-		if jokerCount == 1 {
+	} else if pairs == 2 {
+		if jokers == 1 {
 			return FullHouse
 		}
 		return TwoPair
-	}
-	if pairs == 1 {
-		if jokerCount == 3 {
+	} else if pairs == 1 {
+		if jokers == 3 {
 			return FiveOfAKind
-		} else if jokerCount == 2 {
+		} else if jokers == 2 {
 			return FourOfAKind
-		} else if jokerCount == 1 {
+		} else if jokers == 1 {
 			return ThreeOfAKind
 		}
 		return Pair
 	}
-	if jokerCount == 4 {
+	if jokers == 4 {
 		return FiveOfAKind
-	} else if jokerCount == 3 {
+	} else if jokers == 3 {
 		return FourOfAKind
-	} else if jokerCount == 2 {
+	} else if jokers == 2 {
 		return ThreeOfAKind
-	} else if jokerCount == 1 {
+	} else if jokers == 1 {
 		return Pair
 	}
 	return HighCard
