@@ -45,21 +45,17 @@ func part1(lines []string) {
 
 func part2(lines []string) {
 	instructions, nodes := parse(lines)
-	var counters []int
+	steps := 1
 	for k := range nodes {
 		if strings.HasSuffix(k, "A") {
 			var counter int
 			for ; !strings.HasSuffix(k, "Z"); counter++ {
 				k = nodes[k][instructions[counter%len(instructions)]]
 			}
-			counters = append(counters, counter)
+			steps = calcLCM(steps, counter)
 		}
 	}
-	lcm := calcLCM(counters[0], counters[1])
-	for i := 2; i < len(counters); i++ {
-		lcm = calcLCM(lcm, counters[i])
-	}
-	fmt.Println(lcm)
+	fmt.Println(steps)
 }
 
 func parse(lines []string) (string, map[string]map[byte]string) {
