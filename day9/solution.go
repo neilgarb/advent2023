@@ -62,7 +62,6 @@ func extrapolate(l string, first bool) int {
 		}
 		nums = diffs
 	}
-	stack = append(stack, 0)
 	var tot int
 	for i := len(stack) - 1; i >= 0; i-- {
 		if first {
