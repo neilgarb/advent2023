@@ -21,18 +21,14 @@ func Atoi(s string) int {
 	return i
 }
 
-type Coord2D struct {
-	X, Y int
-}
+type Coord2D [2]int
 
 func (c Coord2D) Add(c2 Coord2D) Coord2D {
-	return Coord2D{c.X + c2.X, c.Y + c2.Y}
+	return Coord2D{c[0] + c2[0], c[1] + c2[1]}
 }
 
-type Coord3D struct {
-	X, Y, Z int
-}
+type Coord3D [3]int
 
 func (c Coord3D) Add(c2 Coord3D) Coord3D {
-	return Coord3D{c.X + c2.X, c.Y + c2.Y, c.Z + c2.Z}
+	return Coord3D{c[0] + c2[0], c[1] + c2[1], c[2] + c2[2]}
 }

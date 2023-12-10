@@ -29,7 +29,7 @@ func part1(lines []string) {
 GameLoop:
 	for i, game := range games {
 		for _, set := range game {
-			if set.X > 12 || set.Y > 13 || set.Z > 14 {
+			if set[0] > 12 || set[1] > 13 || set[2] > 14 {
 				continue GameLoop
 			}
 		}
@@ -44,11 +44,11 @@ func part2(lines []string) {
 	for _, game := range games {
 		var c adv.Coord3D
 		for _, set := range game {
-			c.X = max(c.X, set.X)
-			c.Y = max(c.Y, set.Y)
-			c.Z = max(c.Z, set.Z)
+			c[0] = max(c[0], set[0])
+			c[1] = max(c[1], set[1])
+			c[2] = max(c[2], set[2])
 		}
-		tot += c.X * c.Y * c.Z
+		tot += c[0] * c[1] * c[2]
 	}
 	fmt.Println(tot)
 }
@@ -63,11 +63,11 @@ func parseGames(lines []string) [][]adv.Coord3D {
 			for _, pick := range strings.Split(set, ", ") {
 				count, colour, _ := strings.Cut(pick, " ")
 				if colour == "red" {
-					c.X = adv.Atoi(count)
+					c[0] = adv.Atoi(count)
 				} else if colour == "green" {
-					c.Y = adv.Atoi(count)
+					c[1] = adv.Atoi(count)
 				} else {
-					c.Z = adv.Atoi(count)
+					c[2] = adv.Atoi(count)
 				}
 			}
 			row = append(row, c)

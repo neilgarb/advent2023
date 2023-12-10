@@ -88,7 +88,7 @@ func part2(lines []string) {
 					for j := y - 1; j <= y+1; j++ {
 						if (i != x || j != y) && j >= 0 && i >= 0 && j <= len(lines)-1 && i <= len(l)-1 {
 							if lines[j][i] == '*' {
-								gear = &adv.Coord2D{X: i, Y: j}
+								gear = &adv.Coord2D{i, j}
 								continue AdjLoop
 							}
 						}
