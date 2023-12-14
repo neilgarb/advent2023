@@ -33,6 +33,7 @@ func part1(lines []string) {
 }
 
 func part2(lines []string) {
+	var stack []int
 	for i := 0; i < 1_000; i++ {
 		roll(lines) // N
 		lines = rotate(lines)
@@ -43,8 +44,25 @@ func part2(lines []string) {
 		roll(lines) // E
 		lines = rotate(lines)
 
-		// fmt.Println(load(lines))
-		// TODO(neil): Find the repeating pattern programmatically.
+		stack = append(stack, load(lines))
+		if len(stack) > 100 {
+			for patLen := 5; patLen < 1_000; patLen++ {
+				if patLen >= len(stack)/2 {
+					continue
+				}
+				found := true
+				for j := 0; j < patLen; j++ {
+					if stack[len(stack)-1-j] != stack[len(stack)-1-j-patLen] {
+						found = false
+						break
+					}
+				}
+				if found {
+					fmt.Println(stack[len(stack)-1-patLen+(1_000_000_000-(i+1))%patLen])
+					return
+				}
+			}
+		}
 	}
 }
 
