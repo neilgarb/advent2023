@@ -7,7 +7,7 @@ import (
 )
 
 func Lines[T string | []byte](s T) []string {
-	scanner := bufio.NewScanner(strings.NewReader(string(s)))
+	scanner := bufio.NewScanner(strings.NewReader(strings.TrimSpace(string(s))))
 	var res []string
 	for scanner.Scan() {
 		res = append(res, scanner.Text())
