@@ -32,3 +32,18 @@ type Coord3D [3]int
 func (c Coord3D) Add(c2 Coord3D) Coord3D {
 	return Coord3D{c[0] + c2[0], c[1] + c2[1], c[2] + c2[2]}
 }
+
+func LCM(nums ...int) int {
+	res := nums[0]
+	for i := 1; i < len(nums); i++ {
+		res = res * nums[i] / GCD(res, nums[i])
+	}
+	return res
+}
+
+func GCD(a, b int) int {
+	for b > 0 {
+		a, b = b, a%b
+	}
+	return a
+}
