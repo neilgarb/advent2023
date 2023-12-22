@@ -26,6 +26,12 @@ type Coord2D [2]int
 func (c Coord2D) Add(c2 Coord2D) Coord2D {
 	return Coord2D{c[0] + c2[0], c[1] + c2[1]}
 }
+func (c Coord2D) Sub(c2 Coord2D) Coord2D {
+	return Coord2D{c[0] - c2[0], c[1] - c2[1]}
+}
+func (c Coord2D) Mul(i int) Coord2D {
+	return Coord2D{c[0] * i, c[1] * i}
+}
 
 type Coord3D [3]int
 
