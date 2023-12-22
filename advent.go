@@ -16,8 +16,8 @@ func Lines[T string | []byte](s T) []string {
 
 }
 
-func Atoi(s string) int {
-	i, _ := strconv.Atoi(s)
+func Atoi[T string | rune | byte](s T) int {
+	i, _ := strconv.Atoi(string(s))
 	return i
 }
 
